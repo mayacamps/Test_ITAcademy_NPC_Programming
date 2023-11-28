@@ -1,0 +1,78 @@
+Seller: {
+name: Lucas
+type: farmer
+city: Barcelona
+inventory: {
+[Item: {
+	name: apple
+	type: food
+	price: 2.3
+	% wear: 100.0}
+, Item: {
+	name: sword
+	type: weapon
+	price: 100.0
+	% wear: 100.0}
+, Item: {
+	name: knife
+	type: weapon
+	price: 25.0
+	% wear: 50.0}
+, Item: {
+	name: wood
+	type: materials
+	price: 30.0
+	% wear: 50.0}
+]}
+}
+Seller: {
+name: Andrea
+type: thief
+city: Barcelona
+inventory: {
+[Item: {
+	name: grenade
+	type: weapon
+	price: 150.0
+	% wear: 100.0}
+, Item: {
+	name: pie
+	type: food
+	price: 15.0
+	% wear: 100.0}
+]}
+}
+Seller: {
+name: Fran
+type: merchant
+city: Valencia
+inventory: {
+[Item: {
+	name: metal
+	type: materials
+	price: 2.3
+	% wear: 50.0}
+, Item: {
+	name: rock
+	type: materials
+	price: 60.0
+	% wear: 100.0}
+, Item: {
+	name: banana
+	type: food
+	price: 1.7
+	% wear: 50.0}
+, Item: {
+	name: bomb
+	type: weapon
+	price: 250.0
+	% wear: 100.0}
+]}
+}
+Seller: {
+name: Juan
+type: farmer
+city: Madrid
+inventory: {
+[]}
+}
