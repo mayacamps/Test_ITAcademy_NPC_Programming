@@ -1,7 +1,9 @@
-import java.io.BufferedWriter;
-import java.io.IOException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Scanner;
@@ -13,7 +15,7 @@ public class Game {
         //case 1- Consult a seller's items.
         String message = "Seller does not exist.\n";
         showAllSellersName();
-        System.out.println("Choose one seller: ");
+        System.out.println("\nChoose one seller: ");
 
         String sellerName = en.nextLine();
         int posSeller = Init.getPositionSeller(sellerName);
@@ -88,19 +90,10 @@ public class Game {
         Init.getSellers().stream().flatMap(seller -> seller.getInventory().stream()).map(Item::getType).distinct().toList().forEach(System.out::println);
     }
 
-    public static void saveJson(){
-        try (BufferedWriter myWriter = Files.newBufferedWriter(Paths.get("src/main/java/sellersInfo.json"))){
-            Init.getSellers().forEach(seller -> {
-                try {
-                    myWriter.write(seller.toString());
-                } catch (IOException e) {
-                    throw new RuntimeException("Error writing sellers info.\n");
-                }
-            });
-            myWriter.close();
-            System.out.println("Successfully wrote to the file.\n");
-        } catch (IOException e) {
-            System.err.println("An error occurred while creating or writing to the file.\n");
-        }
+    public static <T> void serializeJson(List<T> myObj, String fileName) throws IOException {
+        // case 7 - serialize sellers info
+        ObjectMapper mapper = new ObjectMapper();
+        File file = new File("src/main/java/" + fileName);
+        mapper.writerWithDefaultPrettyPrinter().writeValue(file, myObj);
     }
 }

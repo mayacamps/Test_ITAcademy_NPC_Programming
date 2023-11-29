@@ -129,6 +129,4 @@ public class Player {
                 "\ninventory: {" + getPlayerInventory() + "}\n}\n";
     }
 
-    //DELETE METHOD AND OPTION 8 IN MENU
-    public static void showInventory(){Init.getPlayer().getPlayerInventory().forEach(System.out::println);}
 }

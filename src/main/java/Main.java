@@ -1,5 +1,8 @@
+import java.io.IOException;
+
 public class Main {
     public static void main(String[] args) {
+        Init.init();
         loop();
     }
 
@@ -12,11 +15,8 @@ public class Main {
                 case 3 -> showCheapestItemCity();
                 case 4 -> showTypeItemOrderedPrice();
                 case 5 -> buyItemToSeller();
-                case 6 -> {
-                    try {sellItemToSeller();}
-                    catch (FullInventaryException e) {System.err.println(e.getMessage());}}
-                case 7 -> saveSellersInfo();
-                case 8 -> Player.showInventory();
+                case 6 -> sellItemToSeller();
+                case 7 -> serializeSellersInfo();
                 case 0 -> {
                     exit = true;
                     System.out.println("Bye!");}
@@ -27,7 +27,7 @@ public class Main {
     }
     private static int menu(){
         int menuOpt;
-        System.out.println("The application allows:\n" +
+        System.out.println("Game management menu:\n" +
                 "1- Consult a seller's items.\n" +
                 "2- Consult the sellers in a city.\n" +
                 "3- Show the cheapest items from all the sellers in a city\n" +
@@ -36,7 +36,7 @@ public class Main {
                 "6- Simulate the sale of an item to an NPC.*\n" +
                 "7- Serialize the information of each NPC into a JSON file\n" +
                 "0- Exit");
-        menuOpt = Readers.readInt("Choose an option: ");
+        menuOpt = Readers.readInt("\nChoose an option: ");
         return menuOpt;
     }
 
@@ -56,11 +56,20 @@ public class Main {
     private static void buyItemToSeller(){
         Player.buyItem();
     }
-    private static void sellItemToSeller() throws FullInventaryException{
-        Player.sellItem();
+    private static void sellItemToSeller(){
+        try {
+            Player.sellItem();
+        }catch (FullInventaryException e) {
+            System.err.println(e.getMessage());
+        }
     }
-    private static void saveSellersInfo(){
-        Game.saveJson();
+    private static void serializeSellersInfo(){
+        try {
+            Game.serializeJson(Init.getSellers(), "sellersInfo.json");
+            System.out.println("Successfully wrote to the file.\n");
+        } catch (IOException e) {
+            System.err.println("An error occurred while creating or writing to the file.\n");
+        }
     }
 
 }

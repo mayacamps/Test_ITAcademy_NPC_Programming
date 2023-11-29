@@ -8,7 +8,7 @@ public class Init {
     public static List<Seller> sellers = new ArrayList<Seller>();
     public static Player player = new Player("Mamen", "Madrid");
 
-    static{
+    public static void init(){
         Item item1 = new Item("apple", "food", 2.3, 100);
         Item item2 = new Item("sword", "weapon", 100, 100);
         Item item3 = new Item("knife", "weapon", 25, 50);
@@ -47,6 +47,7 @@ public class Init {
 
         player.getPlayerInventory().add(item11);
         player.getPlayerInventory().add(item12);
+        System.out.println("Initialized game data.\n_____________________________________________");
     }
 
     public static List<Seller> getSellers() {

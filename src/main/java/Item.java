@@ -1,3 +1,5 @@
+import java.io.Serial;
+
 public class Item {
     private String name, type;
     private double price, wear;
